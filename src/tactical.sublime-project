@@ -3,7 +3,13 @@
 	[
 		{
 			"path": ".",
-		}
+		},
+		{
+			"path": "/home/cherebrus/Desktop/GameDev/Odin/core",
+		},
+		{
+			"path": "/home/cherebrus/Desktop/GameDev/Odin/vendor/raylib"
+		},
 	],
 	"build_systems":
 	[
