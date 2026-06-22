@@ -4,7 +4,7 @@ import rl "vendor:raylib"
 
 GameState :: struct {
     current_camera: rl.Camera2D,
-    grid: Grid
+    grid: Grid,
 }
 game_state: GameState
 game_init :: proc() {
@@ -16,11 +16,9 @@ game_init :: proc() {
 }
 
 game_start :: proc() {
-    game_state.current_camera = {0, 0, 0, 3}
+    game_state.current_camera = { 0, 0, 0, 3 }
     game_state.grid = create_grid(2, 3, { 0, 0 })
-    game_state.grid.cells[5].type = .flower
-
-    debug_grid(game_state.grid)
+    game_state.grid.cells[4].type = .none
 
 }
 

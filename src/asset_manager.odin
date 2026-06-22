@@ -12,7 +12,7 @@ Asset :: enum {
     flower_tile,
 }
 
-assets: [Asset][2]i32 = {
+assets: [Asset][2]int = {
     .tile = {0, 0},
     .grass_tile = {1, 0},
     .flower_tile = {2, 0},
@@ -21,7 +21,7 @@ assets: [Asset][2]i32 = {
 
 
 
-draw_asset :: proc(asset_name: Asset, position: [2]i32) {
+draw_asset :: proc(asset_name: Asset, position: [2]int) {
     rl.DrawTextureRec(texture,
     {f32(assets[asset_name].x * ASSETS_SIZE),
     f32(assets[asset_name].y * ASSETS_SIZE),
