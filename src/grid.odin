@@ -4,7 +4,7 @@ import "core:fmt"
 
 Cell :: struct {
     type: Tile_Type,
-    unit: Unit,
+    grid_object: GridObject,
 }
 
 Grid :: struct {
@@ -17,10 +17,10 @@ Grid :: struct {
 }
 
 Tile_Type :: enum {
-    none,
-    defult,
-    grass,
-    flower,
+    None,
+    Defult,
+    Grass,
+    Flower,
 }
 
 create_grid :: proc(hight: int, width: int, start_point: [2]int) -> Grid {
@@ -35,7 +35,8 @@ create_grid :: proc(hight: int, width: int, start_point: [2]int) -> Grid {
     grid_n.cells = make([]Cell, grid_n.cell_amount)
 
     for &cell in grid_n.cells {
-        cell.type = .defult
+        cell.type = .Defult
+        cell.grid_object.id = -1
     }
 
     return grid_n
@@ -52,16 +53,16 @@ draw_gird :: proc(grid: Grid) {
         cell_position_y := cell_position_2d.y * ASSETS_SIZE
 
         switch cell.type {
-        case .none:
-        case .defult:
-            draw_asset(.tile, { cell_position_x, cell_position_y })
-        case .grass:
-            draw_asset(.grass_tile, { cell_position_x, cell_position_y })
-        case .flower:
-            draw_asset(.flower_tile, { cell_position_x, cell_position_y })
+        case .None:
+        case .Defult:
+            draw_asset(.Tile, { cell_position_x, cell_position_y })
+        case .Grass:
+            draw_asset(.Grass_tile, { cell_position_x, cell_position_y })
+        case .Flower:
+            draw_asset(.Flower_tile, { cell_position_x, cell_position_y })
         }
 
-        if cell.unit != { }  do draw_unit(cell.unit)
+        if cell.grid_object.id != -1  do draw_object(cell.grid_object)
 
     }
 }

@@ -7,15 +7,15 @@ ASSETS_FILE :: "assets/Tilemap/tilemap_packed.png"
 texture: rl.Texture2D
 
 Asset :: enum {
-    tile,
-    grass_tile,
-    flower_tile,
+    Tile,
+    Grass_tile,
+    Flower_tile,
 }
 
 assets: [Asset][2]int = {
-    .tile = {0, 0},
-    .grass_tile = {1, 0},
-    .flower_tile = {2, 0},
+    .Tile = {0, 0},
+    .Grass_tile = {1, 0},
+    .Flower_tile = {2, 0},
 
 }
 
