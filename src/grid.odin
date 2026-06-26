@@ -2,11 +2,6 @@ package src
 
 import "core:fmt"
 
-Cell :: struct {
-    type: Tile_Type,
-    grid_object: GridObject,
-}
-
 Grid :: struct {
     hight : int,
     width: int,
@@ -15,6 +10,18 @@ Grid :: struct {
     cells: []Cell,
 
 }
+
+Cell :: struct {
+    tile: Tile,
+    grid_object: GridObject,
+}
+
+Tile :: struct {
+    type: Tile_Type,
+    is_walkable: bool,
+    move_amount: int,
+}
+
 
 Tile_Type :: enum {
     None,
@@ -35,7 +42,7 @@ create_grid :: proc(hight: int, width: int, start_point: [2]int) -> Grid {
     grid_n.cells = make([]Cell, grid_n.cell_amount)
 
     for &cell in grid_n.cells {
-        cell.type = .Defult
+        cell.tile.type = .Defult
         cell.grid_object.id = -1
     }
 
@@ -52,7 +59,7 @@ draw_gird :: proc(grid: Grid) {
         cell_position_x := cell_position_2d.x * ASSETS_SIZE
         cell_position_y := cell_position_2d.y * ASSETS_SIZE
 
-        switch cell.type {
+        switch cell.tile.type {
         case .None:
         case .Defult:
             draw_asset(.Tile, { cell_position_x, cell_position_y })

@@ -18,7 +18,7 @@ game_init :: proc() {
 game_start :: proc() {
     game_state.current_camera = { 0, 0, 0, 3 }
     game_state.grid = create_grid(2, 3, { 0, 0 })
-    game_state.grid.cells[4].type = .None
+    game_state.grid.cells[4].tile.type = .None
 
     object: GridObject
     add_component(&object, StatsComponent{})

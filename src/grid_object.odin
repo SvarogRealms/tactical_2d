@@ -6,7 +6,6 @@ GridObject :: struct {
     id: int,
     components: bit_set[Object_Component],
     stats: StatsComponent,
-
 }
 
 Object_Component :: enum {
@@ -65,7 +64,8 @@ multiply_stat :: proc() {
 
 //region Move Component
 MovementComponent :: struct {
-    
+    current: int,
+    move_to: int,
 }
 //endregion
 
