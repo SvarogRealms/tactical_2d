@@ -3,19 +3,13 @@ package src
 import rl "vendor:raylib"
 
 ASSETS_SIZE :: 16
-ASSETS_FILE :: "assets/Tilemap/tilemap_packed.png"
+ASSETS_FILE :: "../assets/Tilemap/tilemap_packed.png"
 texture: rl.Texture2D
 
 Asset :: enum {
-    Tile,
-    Grass_tile,
-    Flower_tile,
 }
 
 assets: [Asset][2]int = {
-    .Tile = {0, 0},
-    .Grass_tile = {1, 0},
-    .Flower_tile = {2, 0},
 
 }
 

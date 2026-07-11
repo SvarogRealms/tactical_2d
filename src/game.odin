@@ -5,8 +5,9 @@ import rl "vendor:raylib"
 GameState :: struct {
     current_camera: rl.Camera2D,
     grid: Grid,
+    object: GridObject,
 }
-game_state: GameState
+gs: GameState
 game_init :: proc() {
     rl.InitWindow(800, 450, "Odin + Raylib Hello World")
     rl.SetExitKey(.Q)
@@ -16,12 +17,11 @@ game_init :: proc() {
 }
 
 game_start :: proc() {
-    game_state.current_camera = { 0, 0, 0, 3 }
-    game_state.grid = create_grid(2, 3, { 0, 0 })
-    game_state.grid.cells[4].tile.type = .None
+    gs.current_camera = { 0, 0, 0, 3 }
+    gs.grid = create_grid(2, 3, { 0, 0 })
+    gs.grid.cells[4].tile.type = .None
 
-    object: GridObject
-    add_component(&object, StatsComponent{})
+    add_component(&gs.object, StatsComponent{})
 
 }
 
@@ -31,11 +31,11 @@ game_simulate :: proc() {
 game_draw :: proc() {
 
     rl.BeginDrawing()
-    rl.BeginMode2D(game_state.current_camera)
+    rl.BeginMode2D(gs.current_camera)
 
-    rl.ClearBackground(rl.SKYBLUE)
-    draw_gird(game_state.grid)
-
+    rl.ClearBackground(rl.BLACK)
+    draw_gird(gs.grid)
+    draw_object(gs.object)
     rl.EndMode2D()
     rl.EndDrawing()
 

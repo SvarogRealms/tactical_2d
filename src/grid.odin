@@ -1,5 +1,7 @@
 package src
 
+import rl "vendor:raylib"
+
 import "core:fmt"
 
 Grid :: struct {
@@ -26,8 +28,6 @@ Tile :: struct {
 Tile_Type :: enum {
     None,
     Defult,
-    Grass,
-    Flower,
 }
 
 create_grid :: proc(hight: int, width: int, start_point: [2]int) -> Grid {
@@ -62,11 +62,8 @@ draw_gird :: proc(grid: Grid) {
         switch cell.tile.type {
         case .None:
         case .Defult:
-            draw_asset(.Tile, { cell_position_x, cell_position_y })
-        case .Grass:
-            draw_asset(.Grass_tile, { cell_position_x, cell_position_y })
-        case .Flower:
-            draw_asset(.Flower_tile, { cell_position_x, cell_position_y })
+            rl.DrawRectangleRec({ f32(cell_position_x), f32(cell_position_y), ASSETS_SIZE, ASSETS_SIZE}, rl.WHITE)
+            rl.DrawRectangleLinesEx({ f32(cell_position_x), f32(cell_position_y), ASSETS_SIZE, ASSETS_SIZE}, 0.5, rl.GRAY)
         }
 
         if cell.grid_object.id != -1  do draw_object(cell.grid_object)

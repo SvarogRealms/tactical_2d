@@ -1,10 +1,14 @@
 package src
 
 import "core:fmt"
+import rl "vendor:raylib"
+import "core:c"
 
 GridObject :: struct {
     id: int,
     components: bit_set[Object_Component],
+    position: [2]f32,
+
     stats: StatsComponent,
 }
 
@@ -98,5 +102,5 @@ unselect_object :: proc() {
 }
 
 draw_object :: proc(unit: GridObject) {
-    fmt.println("Draw Object")
+   rl.DrawCircle(c.int(unit.position.x + ASSETS_SIZE / 2), c.int(unit.position.y + ASSETS_SIZE / 2), ASSETS_SIZE / 2, rl.BLUE)
 }

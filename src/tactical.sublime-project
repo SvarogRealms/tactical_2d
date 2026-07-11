@@ -8,7 +8,10 @@
 			"path": "/home/cherebrus/Desktop/GameDev/Odin/core",
 		},
 		{
-			"path": "/home/cherebrus/Desktop/GameDev/Odin/vendor/raylib"
+			"path": "/home/cherebrus/Desktop/GameDev/Odin/vendor/raylib",
+		},
+		{
+			"path": "/home/cherebrus/Desktop/GameDev/SvarogRealms/tactical_2d/assets"
 		},
 	],
 	"build_systems":
