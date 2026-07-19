@@ -18,10 +18,11 @@ game_init :: proc() {
 
 game_start :: proc() {
     gs.current_camera = { 0, 0, 0, 3 }
-    gs.grid = create_grid(2, 3, { 0, 0 })
+    gs.grid = create_grid(2, 3, { 10, 10 })
     gs.grid.cells[4].tile.type = .None
 
     add_component(&gs.object, StatsComponent{})
+    set_object_in_cell(gs.grid, &gs.object, {1, 1})
 
 }
 

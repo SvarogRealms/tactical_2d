@@ -56,8 +56,8 @@ draw_gird :: proc(grid: Grid) {
 
     for cell, i in grid.cells {
         cell_position_2d := cell_position_from_1d_to_2d(i, grid.width)
-        cell_position_x := cell_position_2d.x * ASSETS_SIZE
-        cell_position_y := cell_position_2d.y * ASSETS_SIZE
+        cell_position_x := cell_position_2d.x * ASSETS_SIZE + grid.start_point.x
+        cell_position_y := cell_position_2d.y * ASSETS_SIZE + grid.start_point.y
 
         switch cell.tile.type {
         case .None:
@@ -81,4 +81,8 @@ cell_position_from_1d_to_2d :: proc(position: int, grid_width: int) -> [2]int {
     position_n.y = position / grid_width
 
     return position_n
+}
+
+set_object_in_cell :: proc(grid: Grid, object: ^GridObject, cell_pos: [2]f32){
+    object.position = {f32(grid.start_point.x) + (cell_pos.x * ASSETS_SIZE), f32(grid.start_point.y) + (cell_pos.y * ASSETS_SIZE)}
 }
