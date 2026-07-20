@@ -85,4 +85,5 @@ cell_position_from_1d_to_2d :: proc(position: int, grid_width: int) -> [2]int {
 
 set_object_in_cell :: proc(grid: Grid, object: ^GridObject, cell_pos: [2]f32){
     object.position = {f32(grid.start_point.x) + (cell_pos.x * ASSETS_SIZE), f32(grid.start_point.y) + (cell_pos.y * ASSETS_SIZE)}
+    object.collider = {object.position.x, object.position.y, ASSETS_SIZE, ASSETS_SIZE}
 }

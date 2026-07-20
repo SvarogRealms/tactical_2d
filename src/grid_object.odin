@@ -1,18 +1,21 @@
 package src
 
+import "core:c"
 import "core:fmt"
 import rl "vendor:raylib"
-import "core:c"
+
+grid_objets: [dynamic; 1000]^GridObject
 
 GridObject :: struct {
     id: int,
-    components: bit_set[Object_Component],
+    behaviours: bit_set[Object_Behaviour],
     position: [2]f32,
+    collider: rl.Rectangle,
 
     stats: StatsComponent,
 }
 
-Object_Component :: enum {
+Object_Behaviour :: enum {
     Stats,
     Move,
     Hitable,
@@ -49,6 +52,19 @@ Modifier :: enum {
     Set,
 }
 
+create_grid_object :: proc(behaviours: bit_set[Object_Behaviour], position: [2]f32) -> ^GridObject {
+    obj : ^GridObject = new(GridObject)
+
+    obj.position = position
+    obj.behaviours = behaviours
+    obj.collider = { position.x, position.y, ASSETS_SIZE, ASSETS_SIZE }
+
+
+    append(&grid_objets, obj)
+
+    return obj
+}
+
 add_modifier :: proc() {
 
 }
@@ -73,14 +89,13 @@ MovementComponent :: struct {
 }
 //endregion
 
-selected_object: GridObject
 EMPTY_GRID_OBJECT :: GridObject{}
 
 
 add_component :: proc(object: ^GridObject, component: Componnent) {
     switch comp in component {
     case StatsComponent:
-        object.components += { .Stats }
+        object.behaviours += { .Stats }
         object.stats = comp
     case:
     // Optional: Catch-all fallback if an unhandled variant is passed
