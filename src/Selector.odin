@@ -1,26 +1,29 @@
 package src
 
-import "core:fmt"
 import rl "vendor:raylib"
 
 Selector :: struct {
-    previous_objects: []GridObject,
-    current: GridObject,
+    current: ^GridObject,
 }
+
+selector: Selector
 
 select_input :: proc() {
     if rl.IsMouseButtonDown(settings.select_ket) {
+        selector.current = nil
         for obj in grid_objets {
-            if .Selectable in obj.behaviours {
-                if rl.CheckCollisionPointRec(rl.GetScreenToWorld2D(rl.GetMousePosition(), gs.current_camera), obj.collider) {
-                    fmt.println("Selected")
-                }
+            if rl.CheckCollisionPointRec(rl.GetScreenToWorld2D(rl.GetMousePosition(), gs.current_camera), obj.collider) {
+                if .Selectable in obj.behaviours {
+                    selector.current = obj
 
+                }
             }
         }
     }
 }
 
-select_objet :: proc() {
-
+draw_select :: proc() {
+    if selector.current != nil {
+        rl.DrawRectangleLinesEx(selector.current.collider, 0.3, rl.GREEN)
+    }
 }

@@ -21,12 +21,16 @@ game_start :: proc() {
     gs.grid.cells[4].tile.type = .None
 
     gs.object = create_grid_object({ .Selectable }, { 0, 0 })
+    set_object_in_cell(gs.grid, create_grid_object({ .Selectable }, { 0, 0 }), {1, 0})
+    set_object_in_cell(gs.grid, create_grid_object({  }, { 0, 0 }), {2, 0})
     add_component(gs.object, StatsComponent{})
     set_object_in_cell(gs.grid, gs.object, {1, 1})
 
 }
 
 game_simulate :: proc() {
+    fmt.println(len(grid_objets))
+
     select_input()
 }
 
@@ -37,7 +41,12 @@ game_draw :: proc() {
 
     rl.ClearBackground(rl.BLACK)
     draw_gird(gs.grid)
-    draw_object(gs.object^)
+
+    for obj in grid_objets {
+        draw_object(obj^)
+    }
+
+    draw_select()
     rl.EndMode2D()
     rl.EndDrawing()
 

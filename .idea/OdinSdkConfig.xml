@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="com.lasagnerd.odin.settings.OdinSdkConfigPersistentState">
+    <option name="toolchainId" value="634ad995-7e13-4196-8814-150174170401" />
     <option name="sdkPath" value="C:/Odin" />
     <option name="extraBuildFlags" value="-strict-style" />
     <option name="semanticAnnotatorEnabled" value="true" />
